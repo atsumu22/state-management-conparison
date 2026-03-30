@@ -10,5 +10,4 @@ class ArticleWithEnum < ApplicationRecord
       publisher_id: user.id
     )
   end
-
 end
