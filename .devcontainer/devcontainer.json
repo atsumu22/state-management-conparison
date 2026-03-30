@@ -1,0 +1,37 @@
+{
+  "name": "state-management-comparison",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+  ],
+  "forwardPorts": [3000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Rails",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "gem install rails --no-document",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "shopify.ruby-lsp",
+        "rebornix.ruby",
+        "kaiwood.endwise",
+        "mechatroner.rainbow-csv"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "shopify.ruby-lsp",
+        "[ruby]": {
+          "editor.defaultFormatter": "shopify.ruby-lsp"
+        }
+      }
+    }
+  },
+  "remoteUser": "root"
+}
