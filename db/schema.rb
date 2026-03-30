@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_03_30_054710) do
+ActiveRecord::Schema[8.1].define(version: 2026_03_30_060001) do
+  create_table "article_archives", force: :cascade do |t|
+    t.bigint "archiver_id", null: false
+    t.bigint "article_with_relation_id", null: false
+    t.datetime "created_at", null: false
+    t.string "reason"
+    t.datetime "updated_at", null: false
+    t.index ["article_with_relation_id"], name: "index_article_archives_on_article_with_relation_id", unique: true
+  end
+
   create_table "article_publications", force: :cascade do |t|
     t.bigint "article_with_relation_id", null: false
     t.datetime "created_at", null: false
@@ -20,6 +29,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_30_054710) do
   end
 
   create_table "article_with_enums", force: :cascade do |t|
+    t.datetime "archived_at"
+    t.bigint "archiver_id"
     t.datetime "created_at", null: false
     t.datetime "published_at"
     t.bigint "publisher_id"
@@ -34,5 +45,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_03_30_054710) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "article_archives", "article_with_relations"
   add_foreign_key "article_publications", "article_with_relations"
 end

@@ -10,4 +10,12 @@ class ArticleWithEnum < ApplicationRecord
       publisher_id: user.id
     )
   end
+
+  def archive!(user)
+    update!(
+      status: :archived,
+      archived_at: Time.current,
+      archiver_id: user.id
+    )
+  end
 end
